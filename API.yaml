@@ -1,0 +1,114 @@
+---
+swagger: '2.0'
+info:
+  version: 0.0.1
+  description: Move your app forward with the Uber API
+  title: BPM Testing on Cloud API
+paths:
+
+  /runcase:
+    post:
+      parameters:
+        - name: batchOptions
+          in: body
+          description: batch options
+          required: true
+          schema:
+            $ref: '#/definitions/batchOptions'
+      responses:
+        200:
+          description: ok
+          schema:
+            $ref: '#/definitions/returnObject'
+            
+  /generatecase:
+    post:
+      parameters:
+        - name: config
+          in: body
+          description: app process pxml
+          required: true
+          schema:
+            $ref: '#/definitions/config'
+
+      responses:
+        200:
+          description: ok
+           
+  /generatereport:
+    post:
+      parameters:
+        - name: testResults
+          in: body
+          description: test results
+          required: true
+          schema:
+            $ref: '#/definitions/testResults'
+
+      responses:
+        200:
+          description: ok
+
+            
+definitions:
+  batchOptions:
+    type: object
+    required:
+      - projectPath
+      - seleniumUrl
+      - caseString
+      - callbackUrl
+    properties:
+      projectPath:
+        type: string
+      seleniumUrl:
+        type: string
+      caseString:
+        type: string
+      callbackUrl:
+        type: string
+        
+  returnObject:
+    type: object
+    properties:
+      filepath:
+        type: string
+      message:
+        type: string
+  
+  config:
+    type: object
+    required:
+      - processAppString
+    properties:
+      processAppString:
+        type: string
+        
+  testResults:
+    type: object
+    required:
+      - currentReportFolderPath
+      - reportTitle
+      - timeSum
+      - startTime
+      - successRate 
+      - reportNum
+      - batchFlowPath 
+    properties:
+      currentReportFolderPath:
+        type: string
+      reportTitle:
+        type: string
+      timeSum:
+        type: string
+      reportNum:
+        type: string
+      startTime:
+        type: string
+      successRate:
+        type: string
+      batchFlowPath:
+        type: string
+    
+  
+

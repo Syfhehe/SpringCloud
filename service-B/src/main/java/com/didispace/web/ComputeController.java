@@ -17,12 +17,12 @@ public class ComputeController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/add" ,method = RequestMethod.GET)
-    public String add(@RequestParam Integer a, @RequestParam Integer b) {
+    @RequestMapping(value = "/subtraction" ,method = RequestMethod.GET)
+    public String subtraction(@RequestParam Integer a, @RequestParam Integer b) {
         ServiceInstance instance = client.getLocalServiceInstance();
-        Integer r = a + b;
+        Integer r = a - b;
         logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
-        return "From Service-A, Result is " + a + "+" + b + " = " + r;
+        return "From Service-B, Result is "  + a + "-" + b + " = " + r;
     }
 
 }
